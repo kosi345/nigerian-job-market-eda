@@ -75,8 +75,10 @@ data/
 raw/ → original scraped CSV (untouched)
 clean/ → cleaned dataset used for SQL and Power BI
 notebooks/
-cleaning.ipynb → full cleaning 
-eda.ipynb → EDA process, with explanations
+cleaning.ipynb → full data cleaning process, with explanations
+eda.ipynb → exploratory analysis and business insights
+powerbi/
+naijajobs.pbix → the dashboard file
 sql/
 01_top_job_functions.sql
 02_avg_salary_by_job_function.sql
@@ -85,6 +87,30 @@ sql/
 05_postings_by_location.sql
 06_avg_salary_by_location.sql
 07_avg_salary_by_qualification.sql
-powerbi/
-naijajobs.pbix → the dashboard file
-docs/
+
+
+## Dashboard
+
+The Power BI dashboard has four pages:
+- **Overview** — headline numbers (total postings, Lagos's share, top job function)
+![alt text](overview.png)
+- **Demand** — most in-demand job functions and industries, with interactive filters
+![alt text](Demand.png)
+- **Pay** — average salary by job function, industry, experience level, and qualification
+![alt text](Pay.png)
+- **Location** — job postings vs. average pay by state, side by side
+![alt text](Location.png)
+
+
+## How to Reproduce
+
+1. Clone this repo
+2. Run `notebooks/cleaning.ipynb` to clean the raw data and produce `data/clean/jobs_ng_cleaned.csv`
+3. Run `notebooks/eda.ipynb` to reproduce the exploratory analysis
+4. Load the cleaned CSV into a local PostgreSQL database named `nigerian_jobs`, in a table called `job_postings`
+5. Run the queries in `sql/` against that database
+6. Open `powerbi/naijajobs.pbix` in Power BI Desktop (update the database connection to your local credentials)
+
+## Author
+
+**Kosi** — Software Engineering student, Babcock University
